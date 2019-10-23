@@ -14,8 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/{sllug}', 'PagesController@single')->name('page.single');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+Route::get('/{sllug}', 'PagesController@single')->name('page.single');
+

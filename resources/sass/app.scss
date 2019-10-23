@@ -2,3 +2,9 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap-vue/src/index.scss';
+/* Custom CSS Start */
+.status-group {
+    display: block;
+    width: 33%;
+    float: left;
+  }

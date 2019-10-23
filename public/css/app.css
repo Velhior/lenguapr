@@ -24672,3 +24672,11 @@ input[type=color].form-control:disabled {
   background-color: #343a40;
 }
 
+/* Custom CSS Start */
+
+.status-group {
+  display: block;
+  width: 33%;
+  float: left;
+}
+
