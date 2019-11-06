@@ -1,10 +1,16 @@
-//
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import '~font-awesome/scss/font-awesome.scss';
+//@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+//@import '~@fortawesome/fontawesome-free/scss/brands';
+//@import '~@fortawesome/fontawesome-free/scss/regular';
+//@import '~@fortawesome/fontawesome-free/scss/solid';
+
+// Variables
+@import 'variables';
+
+// Bootstrap
 @import '~bootstrap/scss/bootstrap';
-@import 'node_modules/bootstrap/scss/bootstrap';
-@import 'node_modules/bootstrap-vue/src/index.scss';
-/* Custom CSS Start */
-.status-group {
-    display: block;
-    width: 33%;
-    float: left;
-  }
+
+//Frontend
+@import 'frontend';
