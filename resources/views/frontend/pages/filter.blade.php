@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('title')
- {{$teacherPage->title}}
+ Результаты подбора
 @endsection
 @section('description')
- {{$teacherPage->description}}
+ Подбор преподавателя согласно заданым критериям
 @endsection
 @section('content')
 <div class="container">
@@ -26,28 +26,30 @@
         <input class="btn btn-success" type="submit" value="Подобрать">
     </form>
 </div>
- @foreach ($teachers as $teacher)
+
+ @foreach ($filterTeacher as $item)
     <div class="container">
         <div class="card p-5 mt-5 mb-5">
             <div class="row">
                 <div class="col-md-3">
-                    <img width="150px;" height="150px;" src="{{asset('storage/'. $teacher->avatar)}}" alt="">
+                    <img width="150px;" height="150px;" src="{{asset('storage/'. $item->avatar)}}" alt="">
                 </div>
                 <div class="col-md-6">
-                    {{$teacher->name}}
-                    <p class="font-weight-bold">Страна: <i>{{$teacher->region}}</i></p>
-                    <p class="font-weight-bold">Специализация: <i>{{$teacher->speciality}}</i></p>  
-                    {{$teacher->description}}
-                </div>       
-                @if ((auth()->user()->is_approved == 1) && ($order->time > 0) && ($order->end_date > $date))
+                    {{$item->name}}
+                    <p class="font-weight-bold">Страна: <i>{{$item->region}}</i></p>
+                    <p class="font-weight-bold">Специализация: <i>{{$item->speciality}}</i></p>  
+                    {{$item->description}}
+                </div>
+                @if (auth()->user()->is_approved == 1)
                 <div class="col-md-3">
-                    <button data-toggle="modal" data-target="#simpleModal" data-id="{{$teacher->id}}" data-teacher="{{$teacher->name}}" data-whatever=" Занятие с {{$teacher->name}}" class="btn btn-success">Назначить занятие</button>
+                    <button data-toggle="modal" data-target="#simpleModal" data-id="{{$item->id}}" data-teacher="{{$item->name}}" data-whatever=" Занятие с {{$item->name}}" class="btn btn-success">Назначить занятие</button>
                 </div>
                 @endif
             </div>
         </div>
     </div>     
- @endforeach  
+ @endforeach 
+
  {!!$teacherPage->body!!}
  <div class="modal fade" id="simpleModal" tabindex="-1" role="dialog" aria-labelledby="simpleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -69,15 +71,14 @@
                 <div class="form-group">
                 <label class="control-label" for="name">Выберите время для занятия</label>                
                     <div class='input-group date' id='datetimepicker1'>
-                        <input name="lesson_date_time" type='datetime-local' class="form-control" id="datetime" min="2019-11-15T00:25">                        
+                        <input type='datetime-local' class="form-control" id="datetime">                        
                     </div>
+                </div>
                 </div>
                 <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
                 <input type="hidden" id="teacher_id" name="teacher_id" value="">  
                 <input type="hidden" id="teacher_name" name="teacher_name" value="">              
-                <input style="margin: 0 auto; display:block;" type="submit" class="btn btn-primary" value="Назначить">
-                
-                
+                <input style="margin: 0 auto;" type="submit" class="btn btn-primary" value="Назначить">
             </form>
         </div>   
         
